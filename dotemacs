@@ -1,0 +1,88 @@
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("1cd4df5762b3041a09609b5fb85933bb3ae71f298c37ba9e14804737e867faf3" default))
+ '(package-selected-packages
+   '(restart-emacs vterm treemacs gameoflife purple-haze-theme dashboard auto-complete evil beacon org)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+;;SETTING FONT
+(set-face-attribute 'default nil :font "monospace-13" )
+(set-frame-font "Droid Sans Mono-10" nil t)
+;;Loading Theme 
+(load-theme 'purple-haze)
+;;Adding Melpas package 
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
+;; and `package-pinned-packages`. Most users will not need or want to do this.
+;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(package-initialize)
+
+
+;;Starting Dashboard
+(require 'dashboard)
+(dashboard-setup-startup-hook)
+(setq dashboard-footer-messages '("Aye a shooting star!"))
+(setq dashboard-startup-banner "~/github/doomsplash/ram1.png")
+(setq dashboard-items '((recents  . 2)
+                        (bookmarks . 2)
+                        (agenda . 1)))
+;;EVIL MODE 
+(require 'evil)
+(evil-mode 1)
+
+;;Config
+
+;;Makes emacs trans
+(set-frame-parameter (selected-frame) 'alpha '(85 . 50))
+ (add-to-list 'default-frame-alist '(alpha . (85 . 50)))
+;;
+(beacon-mode 1)
+;;
+;;Key Binds
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
+
+(global-set-key (kbd "C-x q") 'treemacs)
+
+(global-set-key (kbd "C-+") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
+
+
+(global-set-key (kbd "C-x SPC") 'find-file)
+
+;;Home made functions with keybind
+;;
+;;Spliting and adding a terminal
+(defun -own-terminal-split ()
+  (interactive)
+  (split-window-below)
+  (vterm))
+
+(global-set-key (kbd "C-x t") '-own-terminal-split)
+
+;;Setting ram as pic
+(setq fancy-splash-image "~/github/emacs/ram1.png")
+
+;;Getting rid of the menu bar
+(menu-bar-mode -1)
+(toggle-scroll-bar -1)
+(tool-bar-mode -1)
+
+;; Increases Garbage Collection During Startup
+(setq startup/gc-cons-threshold gc-cons-threshold)
+(setq gc-cons-threshold most-positive-fixnum)
+(defun startup/reset-gc () (setq gc-cons-threshold startup/gc-cons-threshold))
+(add-hook 'emacs-startup-hook 'startup/reset-gc)
+
+;;Swaping Alt and Ctrl 
+(setq x-ctrl-keysym 'meta)
+(setq x-meta-keysym 'ctrl)
