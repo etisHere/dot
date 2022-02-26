@@ -1,17 +1,10 @@
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    '("1cd4df5762b3041a09609b5fb85933bb3ae71f298c37ba9e14804737e867faf3" default))
  '(package-selected-packages
    '(restart-emacs vterm treemacs gameoflife purple-haze-theme dashboard auto-complete evil beacon org)))
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
+ 
  )
 ;;SETTING FONT
 (set-face-attribute 'default nil :font "monospace-13" )
@@ -31,7 +24,6 @@
 (require 'dashboard)
 (dashboard-setup-startup-hook)
 (setq dashboard-footer-messages '("Aye a shooting star!"))
-(setq dashboard-startup-banner "~/github/doomsplash/ram1.png")
 (setq dashboard-items '((recents  . 2)
                         (bookmarks . 2)
                         (agenda . 1)))
@@ -69,8 +61,6 @@
 
 (global-set-key (kbd "C-x t") '-own-terminal-split)
 
-;;Setting ram as pic
-(setq fancy-splash-image "~/github/emacs/ram1.png")
 
 ;;Getting rid of the menu bar
 (menu-bar-mode -1)
